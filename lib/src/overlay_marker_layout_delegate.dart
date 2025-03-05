@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class OverlayMarkerLayoutDelegate extends SingleChildLayoutDelegate {
   const OverlayMarkerLayoutDelegate({
-    required this.margins,
     required this.callerOffset,
     required this.callerSize,
     required this.additionalOffset,
+    this.marginTop = 24,
   });
 
-  final Rect margins;
+  final double marginTop;
   final Offset callerOffset;
   final Size callerSize;
   final Offset additionalOffset;
@@ -16,8 +16,8 @@ class OverlayMarkerLayoutDelegate extends SingleChildLayoutDelegate {
   @override
   Offset getPositionForChild(Size size, Size childSize) {
     return Offset(
-      (callerOffset.dx + callerSize.width - margins.left + additionalOffset.dx),
-      (callerOffset.dy + callerSize.height / 2 - margins.top - childSize.height / 2 + additionalOffset.dy),
+      (callerOffset.dx + callerSize.width + additionalOffset.dx),
+      (callerOffset.dy + callerSize.height / 2 - marginTop - childSize.height / 2 + additionalOffset.dy),
     );
   }
 
